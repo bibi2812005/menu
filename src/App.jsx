@@ -33,13 +33,13 @@ const categories = [
 ]
 
 const products = [
-  { id: 'classic', name: 'Classic', price: 30000, category: 'combo', badge: 'Bán chạy', tone: 'cream', description: 'Xúc xích dài, phô mai, trứng rán, salad và cà chua.' },
-  { id: 'bacon', name: 'Bacon', price: 40000, category: 'combo', badge: 'Được yêu thích', tone: 'orange', description: 'Bacon, trứng rán, xúc xích lát, salad và cà chua.' },
-  { id: 'jambon', name: 'Jambon', price: 45000, category: 'combo', tone: 'rose', description: 'Jambon, phô mai, trứng rán, salad và cà chua.' },
-  { id: 'steak', name: 'Steak', price: 65000, category: 'combo', badge: 'Đặc biệt', tone: 'brown', description: 'Steak, trứng ốp la, măng tây, salad và cà chua.' },
-  { id: 'fruitscoo', name: 'Fruitscoo', price: 45000, category: 'combo', tone: 'green', description: 'Croissant cùng trái cây tươi thay đổi theo mùa.' },
-  { id: 'hawai', name: 'Hawai', price: 50000, category: 'combo', tone: 'yellow', description: 'Tôm, xúc xích, trứng bông, ô liu, thơm và salad.' },
-  { id: 'seafood', name: 'Seafood', price: 60000, category: 'combo', badge: 'Mới', tone: 'blue', description: 'Tôm, trứng bông, phô mai, salad và cà chua.' },
+  { id: 'classic', name: 'Classic', price: 30000, category: 'combo', badge: 'Bán chạy', tone: 'cream', image: '/assets/products/classic.png', description: 'Xúc xích dài, phô mai, trứng rán, salad và cà chua.' },
+  { id: 'bacon', name: 'Bacon', price: 40000, category: 'combo', badge: 'Được yêu thích', tone: 'orange', image: '/assets/products/bacon.png', description: 'Bacon, trứng rán, xúc xích lát, salad và cà chua.' },
+  { id: 'jambon', name: 'Jambon', price: 45000, category: 'combo', tone: 'rose', image: '/assets/products/jambon.png', description: 'Jambon, phô mai, trứng rán, salad và cà chua.' },
+  { id: 'steak', name: 'Steak', price: 65000, category: 'combo', badge: 'Đặc biệt', tone: 'brown', image: '/assets/products/steak.png', description: 'Steak, trứng ốp la, măng tây, salad và cà chua.' },
+  { id: 'fruitscoo', name: 'Fruitscoo', price: 45000, category: 'combo', tone: 'green', image: '/assets/products/fruitscoo.png', description: 'Croissant cùng trái cây tươi thay đổi theo mùa.' },
+  { id: 'hawai', name: 'Hawai', price: 50000, category: 'combo', tone: 'yellow', image: '/assets/products/hawai.png', description: 'Tôm, xúc xích, trứng bông, ô liu, thơm và salad.' },
+  { id: 'seafood', name: 'Seafood', price: 60000, category: 'combo', badge: 'Mới', tone: 'blue', image: '/assets/products/seafood.png', description: 'Tôm, trứng bông, phô mai, salad và cà chua.' },
   { id: 'shrimp', name: 'Tôm', price: 20000, category: 'savory', tone: 'orange', description: 'Tôm tươi áp chảo, thêm vào món theo sở thích.' },
   { id: 'salmon', name: 'Cá hồi', price: 65000, category: 'savory', tone: 'rose', description: 'Cá hồi mềm ẩm, giàu đạm cho một bữa no lâu.' },
   { id: 'honey-chicken', name: 'Gà sốt mật ong', price: 25000, category: 'savory', badge: 'Dễ ăn', tone: 'yellow', description: 'Gà mềm phủ sốt mật ong ngọt dịu.' },
@@ -63,11 +63,18 @@ const normalize = (value) => value.toLowerCase().normalize('NFD').replace(/[\u03
 
 function ProductVisual({ product }) {
   const Icon = product.category === 'sides' ? Salad : product.category === 'savory' ? UtensilsCrossed : Sandwich
+  if (product.image) {
+    return (
+      <div className="product-visual product-photo">
+        <img src={product.image} alt={`Hình món ${product.name} từ thiết kế Machiico`} loading="lazy" />
+      </div>
+    )
+  }
   return (
     <div className={`product-visual tone-${product.tone}`} aria-hidden="true">
       <span className="visual-ring" />
       <Icon size={40} strokeWidth={1.45} />
-      <span className="visual-label">freshly made</span>
+      <span className="visual-label">ảnh đang cập nhật</span>
     </div>
   )
 }
