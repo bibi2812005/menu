@@ -60,6 +60,8 @@ const products = [
 const categoryNames = Object.fromEntries(categories.map((item) => [item.id, item.label]))
 const formatMoney = (value) => new Intl.NumberFormat('vi-VN').format(value) + 'đ'
 const normalize = (value) => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd')
+const getIngredients = (product) => product.description.replace(/\.$/, '').split(',').map((item) => item.trim())
+const getPreparationTime = (product) => product.category === 'sides' ? '5–10 phút' : product.category === 'savory' ? '10–15 phút' : '15–20 phút'
 
 function ProductVisual({ product }) {
   const Icon = product.category === 'sides' ? Salad : product.category === 'savory' ? UtensilsCrossed : Sandwich
@@ -97,6 +99,7 @@ function App() {
   })
   const [cartOpen, setCartOpen] = useState(false)
   const [checkoutOpen, setCheckoutOpen] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState(null)
   const [toast, setToast] = useState('')
   const [order, setOrder] = useState(null)
 
@@ -105,9 +108,9 @@ function App() {
   }, [cart])
 
   useEffect(() => {
-    document.body.classList.toggle('no-scroll', cartOpen || checkoutOpen)
+    document.body.classList.toggle('no-scroll', cartOpen || checkoutOpen || Boolean(selectedProduct))
     return () => document.body.classList.remove('no-scroll')
-  }, [cartOpen, checkoutOpen])
+  }, [cartOpen, checkoutOpen, selectedProduct])
 
   useEffect(() => {
     if (!toast) return
@@ -120,6 +123,7 @@ function App() {
       if (event.key === 'Escape') {
         setCartOpen(false)
         setCheckoutOpen(false)
+        setSelectedProduct(null)
       }
     }
     window.addEventListener('keydown', close)
@@ -259,6 +263,7 @@ function App() {
             <div className="product-grid">
               {filteredProducts.map((product) => (
                 <article className="product-card" key={product.id}>
+                  <button className="product-details-trigger" type="button" onClick={() => setSelectedProduct(product)} aria-label={`Xem thông tin chi tiết món ${product.name}`} />
                   <ProductVisual product={product} />
                   <div className="product-card-body">
                     <div className="product-meta">
@@ -378,6 +383,54 @@ function App() {
                 </form>
               </>
             )}
+          </div>
+        </div>
+      )}
+
+      {selectedProduct && (
+        <div className="overlay modal-overlay" onMouseDown={(event) => event.target === event.currentTarget && setSelectedProduct(null)}>
+          <div className="product-detail-modal" role="dialog" aria-modal="true" aria-labelledby="product-detail-title">
+            <button className="modal-close" type="button" onClick={() => setSelectedProduct(null)} aria-label="Đóng thông tin món"><X /></button>
+            <div className="product-detail-layout">
+              <div className={`detail-media ${selectedProduct.image ? 'has-photo' : ''}`}>
+                <ProductVisual product={selectedProduct} />
+                {!selectedProduct.image && <span className="detail-image-note">Ảnh món sẽ được cập nhật sớm</span>}
+              </div>
+              <div className="detail-content">
+                <div className="detail-meta">
+                  <span>{categoryNames[selectedProduct.category]}</span>
+                  {selectedProduct.badge && <mark>{selectedProduct.badge}</mark>}
+                </div>
+                <h2 id="product-detail-title">{selectedProduct.name}</h2>
+                <div className="detail-rating"><span><Star size={15} fill="currentColor" /> 4.9</span><small>· Làm mới sau khi bạn đặt</small></div>
+                <p className="detail-description">{selectedProduct.description}</p>
+
+                <div className="detail-facts">
+                  <div><Clock3 size={18} /><span><small>Chuẩn bị</small><b>{getPreparationTime(selectedProduct)}</b></span></div>
+                  <div><ChefHat size={18} /><span><small>Khẩu phần</small><b>1 người</b></span></div>
+                  <div><UtensilsCrossed size={18} /><span><small>Phục vụ</small><b>Tươi mới</b></span></div>
+                </div>
+
+                <div className="ingredient-section">
+                  <h3>Thành phần chính</h3>
+                  <div className="ingredient-list">
+                    {getIngredients(selectedProduct).map((ingredient) => <span key={ingredient}><Check size={13} /> {ingredient}</span>)}
+                  </div>
+                </div>
+
+                <div className="detail-note"><Sparkles size={18} /><p><b>Tùy chỉnh theo ý bạn</b><small>Bạn có thể thêm topping hoặc ghi chú khẩu vị ở bước đặt món.</small></p></div>
+
+                <div className="detail-order-row">
+                  <div><small>Giá món</small><strong>{formatMoney(selectedProduct.price)}</strong></div>
+                  {cart[selectedProduct.id] ? (
+                    <QuantityControl quantity={cart[selectedProduct.id]} onDecrease={() => changeQuantity(selectedProduct.id, -1)} onIncrease={() => changeQuantity(selectedProduct.id, 1)} />
+                  ) : (
+                    <button className="checkout-button detail-add-button" type="button" onClick={() => addToCart(selectedProduct)}><Plus size={18} /> Thêm vào giỏ</button>
+                  )}
+                </div>
+                {cart[selectedProduct.id] && <button className="detail-cart-link" type="button" onClick={() => { setSelectedProduct(null); setCartOpen(true) }}><ShoppingBag size={16} /> Xem giỏ hàng · {cart[selectedProduct.id]} phần</button>}
+              </div>
+            </div>
           </div>
         </div>
       )}
