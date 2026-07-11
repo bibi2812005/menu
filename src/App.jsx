@@ -33,7 +33,7 @@ const categories = [
 ]
 
 const products = [
-  { id: 'classic', name: 'Classic', price: 30000, category: 'combo', badge: 'Bán chạy', tone: 'cream', image: '/assets/products/classic.png', description: 'Xúc xích dài, phô mai, trứng rán, salad và cà chua.' },
+  { id: 'classic', name: 'Classic', price: 30000, category: 'combo', badge: 'Bán chạy', tone: 'cream', image: '/assets/products/classic.png', imageWide: true, description: 'Xúc xích dài, phô mai, trứng rán, salad và cà chua.' },
   { id: 'bacon', name: 'Bacon', price: 40000, category: 'combo', badge: 'Được yêu thích', tone: 'orange', image: '/assets/products/bacon.png', description: 'Bacon, trứng rán, xúc xích lát, salad và cà chua.' },
   { id: 'jambon', name: 'Jambon', price: 45000, category: 'combo', tone: 'rose', image: '/assets/products/jambon.png', description: 'Jambon, phô mai, trứng rán, salad và cà chua.' },
   { id: 'steak', name: 'Steak', price: 65000, category: 'combo', badge: 'Đặc biệt', tone: 'brown', image: '/assets/products/steak.png', description: 'Steak, trứng ốp la, măng tây, salad và cà chua.' },
@@ -67,7 +67,7 @@ function ProductVisual({ product }) {
   const Icon = product.category === 'sides' ? Salad : product.category === 'savory' ? UtensilsCrossed : Sandwich
   if (product.image) {
     return (
-      <div className="product-visual product-photo">
+      <div className={`product-visual product-photo ${product.imageWide ? 'wide-artwork' : ''}`}>
         <img src={product.image} alt={`Hình món ${product.name} từ thiết kế Machiico`} loading="lazy" />
       </div>
     )
@@ -392,7 +392,7 @@ function App() {
           <div className="product-detail-modal" role="dialog" aria-modal="true" aria-labelledby="product-detail-title">
             <button className="modal-close" type="button" onClick={() => setSelectedProduct(null)} aria-label="Đóng thông tin món"><X /></button>
             <div className="product-detail-layout">
-              <div className={`detail-media ${selectedProduct.image ? 'has-photo' : ''}`}>
+              <div className={`detail-media ${selectedProduct.image ? 'has-photo' : ''} ${selectedProduct.imageWide ? 'wide-media' : ''}`}>
                 <ProductVisual product={selectedProduct} />
                 {!selectedProduct.image && <span className="detail-image-note">Ảnh món sẽ được cập nhật sớm</span>}
               </div>
