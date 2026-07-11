@@ -33,7 +33,7 @@ const categories = [
 ]
 
 const products = [
-  { id: 'classic', name: 'Classic', price: 30000, category: 'combo', badge: 'Bán chạy', tone: 'cream', image: '/assets/products/classic.png', imageWide: true, description: 'Xúc xích dài, phô mai, trứng rán, salad và cà chua.' },
+  { id: 'classic', name: 'Classic', price: 30000, category: 'combo', badge: 'Bán chạy', tone: 'cream', image: '/assets/products/classic.png', description: 'Xúc xích dài, phô mai, trứng rán, salad và cà chua.' },
   { id: 'bacon', name: 'Bacon', price: 40000, category: 'combo', badge: 'Được yêu thích', tone: 'orange', image: '/assets/products/bacon.png', description: 'Bacon, trứng rán, xúc xích lát, salad và cà chua.' },
   { id: 'jambon', name: 'Jambon', price: 45000, category: 'combo', tone: 'rose', image: '/assets/products/jambon.png', description: 'Jambon, phô mai, trứng rán, salad và cà chua.' },
   { id: 'steak', name: 'Steak', price: 65000, category: 'combo', badge: 'Đặc biệt', tone: 'brown', image: '/assets/products/steak.png', description: 'Steak, trứng ốp la, măng tây, salad và cà chua.' },
