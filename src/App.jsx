@@ -41,7 +41,7 @@ const products = [
   { id: 'hawai', name: 'Hawai', price: 50000, category: 'combo', tone: 'yellow', image: '/assets/products/hawai.png', description: 'Tôm, xúc xích, trứng bông, ô liu, thơm và salad.' },
   { id: 'seafood', name: 'Seafood', price: 60000, category: 'combo', badge: 'Mới', tone: 'blue', image: '/assets/products/seafood.png', description: 'Tôm, trứng bông, phô mai, salad và cà chua.' },
   { id: 'shrimp', name: 'Tôm', price: 20000, category: 'savory', tone: 'orange', description: 'Tôm tươi áp chảo, thêm vào món theo sở thích.' },
-  { id: 'salmon', name: 'Cá hồi', price: 65000, category: 'savory', tone: 'rose', description: 'Cá hồi mềm ẩm, giàu đạm cho một bữa no lâu.' },
+  { id: 'salmon', name: 'Cá hồi', price: 65000, category: 'savory', tone: 'rose', image: '/assets/products/salmon.png', description: 'Cá hồi mềm ẩm, giàu đạm cho một bữa no lâu.' },
   { id: 'honey-chicken', name: 'Gà sốt mật ong', price: 25000, category: 'savory', badge: 'Dễ ăn', tone: 'yellow', description: 'Gà mềm phủ sốt mật ong ngọt dịu.' },
   { id: 'pepper-chicken', name: 'Gà sốt tiêu đen', price: 25000, category: 'savory', tone: 'brown', description: 'Gà sốt tiêu đen thơm ấm, vị đậm vừa.' },
   { id: 'bacon-extra', name: 'Thịt bacon', price: 30000, category: 'savory', tone: 'rose', description: 'Bacon xông khói áp chảo giòn cạnh.' },
