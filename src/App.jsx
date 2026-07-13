@@ -30,6 +30,7 @@ const categories = [
   { id: 'combo', label: 'Set combo' },
   { id: 'savory', label: 'Món mặn' },
   { id: 'sides', label: 'Rau & ăn kèm' },
+  { id: 'bread', label: 'Bánh & đế' },
 ]
 
 const products = [
@@ -40,28 +41,47 @@ const products = [
   { id: 'fruitscoo', name: 'Fruitscoo', price: 45000, category: 'combo', tone: 'green', image: '/assets/products/fruitscoo.png', description: 'Croissant cùng trái cây tươi thay đổi theo mùa.' },
   { id: 'hawai', name: 'Hawai', price: 50000, category: 'combo', tone: 'yellow', image: '/assets/products/hawai.png', description: 'Tôm, xúc xích, trứng bông, ô liu, thơm và salad.' },
   { id: 'seafood', name: 'Seafood', price: 60000, category: 'combo', badge: 'Mới', tone: 'blue', image: '/assets/products/seafood.png', description: 'Tôm, trứng bông, phô mai, salad và cà chua.' },
-  { id: 'shrimp', name: 'Tôm', price: 20000, category: 'savory', tone: 'orange', description: 'Tôm tươi áp chảo, thêm vào món theo sở thích.' },
+  { id: 'shrimp', name: 'Tôm', price: 20000, category: 'savory', tone: 'orange', image: '/assets/products/shrimp.png', description: 'Tôm tươi áp chảo, thêm vào món theo sở thích.' },
   { id: 'salmon', name: 'Cá hồi', price: 65000, category: 'savory', tone: 'rose', image: '/assets/products/salmon.png', description: 'Cá hồi mềm ẩm, giàu đạm cho một bữa no lâu.' },
-  { id: 'honey-chicken', name: 'Gà sốt mật ong', price: 25000, category: 'savory', badge: 'Dễ ăn', tone: 'yellow', description: 'Gà mềm phủ sốt mật ong ngọt dịu.' },
-  { id: 'pepper-chicken', name: 'Gà sốt tiêu đen', price: 25000, category: 'savory', tone: 'brown', description: 'Gà sốt tiêu đen thơm ấm, vị đậm vừa.' },
-  { id: 'bacon-extra', name: 'Thịt bacon', price: 30000, category: 'savory', tone: 'rose', description: 'Bacon xông khói áp chảo giòn cạnh.' },
-  { id: 'jambon-extra', name: 'Thịt jambon', price: 30000, category: 'savory', tone: 'cream', description: 'Jambon cắt lát, vị mặn nhẹ và mềm.' },
-  { id: 'honey-beef', name: 'Bò sốt mật ong', price: 89000, category: 'savory', badge: 'Premium', tone: 'orange', description: 'Thịt bò mềm cùng sốt mật ong cân bằng.' },
-  { id: 'pepper-beef', name: 'Bò sốt tiêu đen', price: 89000, category: 'savory', tone: 'brown', description: 'Bò áp chảo với sốt tiêu đen đậm đà.' },
-  { id: 'salad', name: 'Salad xanh', price: 5000, category: 'sides', tone: 'green', description: 'Rau xà lách tươi giòn mỗi ngày.' },
-  { id: 'tomato', name: 'Cà chua lát', price: 5000, category: 'sides', tone: 'rose', description: 'Cà chua tươi cắt lát, vị chua ngọt nhẹ.' },
-  { id: 'olive', name: 'Ô liu', price: 10000, category: 'sides', tone: 'green', description: 'Ô liu cắt lát, thơm và mằn mặn.' },
-  { id: 'avocado', name: 'Bơ', price: 15000, category: 'sides', badge: 'Tươi mỗi ngày', tone: 'green', description: 'Bơ chín béo mịn, lượng dùng vừa đủ.' },
-  { id: 'asparagus', name: 'Măng tây', price: 10000, category: 'sides', tone: 'green', description: 'Măng tây áp chảo giữ độ giòn.' },
-  { id: 'mushroom', name: 'Nấm xào', price: 8000, category: 'sides', tone: 'brown', description: 'Nấm xào thơm, mềm mọng và vừa vị.' },
-  { id: 'seaweed', name: 'Rong biển', price: 10000, category: 'sides', tone: 'blue', description: 'Rong biển giòn nhẹ, tăng vị umami.' },
+  { id: 'steak-honey', name: 'Steak sốt mật ong', price: 89000, category: 'savory', badge: 'Premium', tone: 'orange', image: '/assets/products/steak-honey.png', description: 'Steak áp chảo mềm, phủ sốt mật ong ngọt dịu.' },
+  { id: 'steak-pepper', name: 'Steak sốt tiêu đen', price: 89000, category: 'savory', tone: 'brown', image: '/assets/products/steak-pepper.png', description: 'Steak áp chảo cùng sốt tiêu đen thơm nồng.' },
+  { id: 'honey-chicken', name: 'Gà sốt mật ong', price: 25000, category: 'savory', badge: 'Dễ ăn', tone: 'yellow', image: '/assets/products/honey-chicken.png', description: 'Gà mềm phủ sốt mật ong ngọt dịu.' },
+  { id: 'pepper-chicken', name: 'Gà sốt tiêu đen', price: 25000, category: 'savory', tone: 'brown', image: '/assets/products/pepper-chicken.png', description: 'Gà sốt tiêu đen thơm ấm, vị đậm vừa.' },
+  { id: 'bacon-extra', name: 'Thịt bacon', price: 30000, category: 'savory', tone: 'rose', image: '/assets/products/bacon-extra.png', description: 'Bacon xông khói áp chảo giòn cạnh.' },
+  { id: 'jambon-extra', name: 'Thịt jambon', price: 30000, category: 'savory', tone: 'cream', image: '/assets/products/jambon-extra.png', description: 'Jambon cắt lát, vị mặn nhẹ và mềm.' },
+  { id: 'honey-beef', name: 'Bò sốt mật ong', price: 89000, category: 'savory', badge: 'Premium', tone: 'orange', image: '/assets/products/honey-beef.png', description: 'Thịt bò mềm cùng sốt mật ong cân bằng.' },
+  { id: 'pepper-beef', name: 'Bò sốt tiêu đen', price: 89000, category: 'savory', tone: 'brown', image: '/assets/products/pepper-beef.png', description: 'Bò áp chảo với sốt tiêu đen đậm đà.' },
+  { id: 'smoked-sausage', name: 'Xúc xích hun khói', price: 20000, category: 'savory', tone: 'rose', image: '/assets/products/smoked-sausage.png', description: 'Xúc xích hun khói cắt lát, thơm đậm và mọng.' },
+  { id: 'long-sausage', name: 'Xúc xích dài', price: 20000, category: 'savory', tone: 'orange', image: '/assets/products/long-sausage.png', description: 'Xúc xích dài áp chảo, hợp với croissant Classic.' },
+  { id: 'pineapple', name: 'Thơm', price: 5000, category: 'sides', tone: 'yellow', image: '/assets/products/pineapple.png', description: 'Thơm tươi cắt miếng, chua ngọt tự nhiên.' },
+  { id: 'cherry-tomato', name: 'Cà chua bi', price: 5000, category: 'sides', tone: 'rose', image: '/assets/products/cherry-tomato.png', description: 'Cà chua bi tươi mọng, thêm vị chua ngọt.' },
+  { id: 'tomato', name: 'Cà chua lát', price: 5000, category: 'sides', tone: 'rose', image: '/assets/products/tomato.png', description: 'Cà chua tươi cắt lát, vị chua ngọt nhẹ.' },
+  { id: 'salad', name: 'Salad xanh', price: 5000, category: 'sides', tone: 'green', image: '/assets/products/salad.png', description: 'Rau xà lách tươi giòn mỗi ngày.' },
+  { id: 'corn', name: 'Bắp', price: 8000, category: 'sides', tone: 'yellow', image: '/assets/products/corn.png', description: 'Hạt bắp vàng ngọt, mềm và dễ kết hợp.' },
+  { id: 'asparagus', name: 'Măng tây', price: 10000, category: 'sides', tone: 'green', image: '/assets/products/asparagus.png', description: 'Măng tây áp chảo giữ độ giòn.' },
+  { id: 'strawberry', name: 'Dâu', price: 15000, category: 'sides', tone: 'rose', image: '/assets/products/strawberry.png', description: 'Dâu tươi chua ngọt, dùng kèm bánh và salad.' },
+  { id: 'banana', name: 'Chuối', price: 10000, category: 'sides', tone: 'yellow', image: '/assets/products/banana.png', description: 'Chuối chín mềm ngọt, bổ sung năng lượng.' },
+  { id: 'avocado', name: 'Bơ', price: 15000, category: 'sides', badge: 'Tươi mỗi ngày', tone: 'green', image: '/assets/products/avocado.png', description: 'Bơ chín béo mịn, lượng dùng vừa đủ.' },
+  { id: 'olive', name: 'Ô liu', price: 10000, category: 'sides', tone: 'green', image: '/assets/products/olive.png', description: 'Ô liu cắt lát, thơm và mằn mặn.' },
+  { id: 'cucumber', name: 'Dưa leo', price: 5000, category: 'sides', tone: 'green', image: '/assets/products/cucumber.png', description: 'Dưa leo tươi giòn, làm món ăn nhẹ và cân bằng.' },
+  { id: 'mushroom', name: 'Nấm xào', price: 8000, category: 'sides', tone: 'brown', image: '/assets/products/mushroom.png', description: 'Nấm xào thơm, mềm mọng và vừa vị.' },
+  { id: 'seaweed', name: 'Rong biển', price: 10000, category: 'sides', tone: 'blue', image: '/assets/products/seaweed.png', description: 'Rong biển giòn nhẹ, tăng vị umami.' },
+  { id: 'soft-egg', name: 'Trứng chảy', price: 10000, category: 'sides', tone: 'yellow', image: '/assets/products/soft-egg.png', description: 'Trứng lòng đào béo mềm, dùng kèm món mặn.' },
+  { id: 'fried-egg', name: 'Trứng rán', price: 10000, category: 'sides', tone: 'yellow', image: '/assets/products/fried-egg.png', description: 'Trứng rán chín tới, viền nhẹ và lòng đỏ béo.' },
+  { id: 'boiled-egg', name: 'Trứng luộc', price: 10000, category: 'sides', tone: 'yellow', image: '/assets/products/boiled-egg.png', description: 'Trứng luộc cắt lát, tiện dùng cùng salad.' },
+  { id: 'cheese', name: 'Phô mai', price: 10000, category: 'sides', tone: 'cream', image: '/assets/products/cheese.png', description: 'Phô mai lát béo thơm, làm món thêm tròn vị.' },
+  { id: 'wholewheat-sandwich', name: 'Sandwich nguyên cám', price: 15000, category: 'bread', tone: 'brown', image: '/assets/products/wholewheat-sandwich.png', description: 'Sandwich nguyên cám mềm, thơm nhẹ và giàu chất xơ.' },
+  { id: 'plain-croissant', name: 'Croissant', price: 15000, category: 'bread', tone: 'cream', image: '/assets/products/plain-croissant.png', description: 'Croissant bơ nướng vàng, giòn ngoài và mềm trong.' },
+  { id: 'plain-sandwich', name: 'Sandwich', price: 12000, category: 'bread', tone: 'cream', image: '/assets/products/plain-sandwich.png', description: 'Sandwich trắng mềm, phù hợp với mọi loại nhân.' },
+  { id: 'egg-sandwich', name: 'Sandwich phủ trứng', price: 18000, category: 'bread', tone: 'yellow', image: '/assets/products/egg-sandwich.png', description: 'Sandwich phủ trứng nướng vàng, thơm và mềm.' },
+  { id: 'crustless-sandwich', name: 'Sandwich không vỏ', price: 15000, category: 'bread', tone: 'cream', image: '/assets/products/crustless-sandwich.png', description: 'Sandwich bỏ viền, mềm nhẹ và dễ ăn.' },
 ]
 
 const categoryNames = Object.fromEntries(categories.map((item) => [item.id, item.label]))
 const formatMoney = (value) => new Intl.NumberFormat('vi-VN').format(value) + 'đ'
 const normalize = (value) => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd')
 const getIngredients = (product) => product.description.replace(/\.$/, '').split(',').map((item) => item.trim())
-const getPreparationTime = (product) => product.category === 'sides' ? '5–10 phút' : product.category === 'savory' ? '10–15 phút' : '15–20 phút'
+const getPreparationTime = (product) => product.category === 'bread' ? '3–5 phút' : product.category === 'sides' ? '5–10 phút' : product.category === 'savory' ? '10–15 phút' : '15–20 phút'
 
 function ProductVisual({ product }) {
   const Icon = product.category === 'sides' ? Salad : product.category === 'savory' ? UtensilsCrossed : Sandwich
